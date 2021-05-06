@@ -1,0 +1,30 @@
+version: '3'
+services:
+  # jupyterlabというサービス名(コンテナ名)に設定
+  jupyterhub:
+    # Dockerfileからbuild(追加的な設定を書き込めるように)
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # ホストの./workをコンテナの/home/homeにマウント
+    volumes:
+       - "./work/:/home/"
+
+    # ユーザーを設定
+    user: root
+    environment:
+      B_UID: 1000
+      NB_GID: 100
+      GRANT_SUDO: "yes"
+
+    # デバイスへのアクセスを許可
+    privileged: true
+
+    # stopされない限り再起動をする
+    restart: unless-stopped
+
+    #　コンテナ起動後にjupyterlabを起動
+    command: jupyterhub jupyterhub_config.py
+
+    network_mode: "host"
