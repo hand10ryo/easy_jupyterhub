@@ -4,7 +4,7 @@ jupyter hub を１行で立ち上げるツール
 以下のサイトを参考にさせていただきました。
 [DockerでJupyterhubを試してみた](https://qiita.com/dyamaguc/items/db1da3084e36029f20cc)
 
-## Usage
+# Usage
 1. `git clone https://github.com/hand10ryo/easy_jupyterhub.git jupyterhub`
 2. `cd jupyterhub`
 3. `docker-compose up -d`
@@ -26,5 +26,7 @@ jupyter hub を１行で立ち上げるツール
 ## その他
 - マウントの割り当ては、ローカルの `./work/` を コンテナの `/home/` に割り当てしてある
 - docker-compose.yml から任意に変更可能
+- mac OS だと network_mode:host と相性が悪いようなので、8000番ポートを開けるように変更すると良い
+
 
 
